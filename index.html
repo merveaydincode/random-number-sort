@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayıları Göster</title>
+<style>
+  .red-bold {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<button onclick="sirala()">Sırala</button>
+<button onclick="rastgeleSayiSec()" disabled>Rastgele Sayı Seç</button>
+
+<div id="sayilar"></div>
+
+<script>
+function sirala() {
+  var sayilarDiv = document.getElementById("sayilar");
+  sayilarDiv.innerHTML = ""; 
+
+  var satirDiv;
+  for (var i = 1; i <= 99; i++) {
+    if ((i - 1) % 10 === 0) {
+      satirDiv = document.createElement("div");
+      sayilarDiv.appendChild(satirDiv);
+    }
+    var span = document.createElement("span");
+    span.textContent = i + " ";
+    satirDiv.appendChild(span);
+  }
+  document.querySelector('button:nth-of-type(1)').disabled = true; 
+  document.querySelector('button:nth-of-type(2)').disabled = false; 
+}
+
+function rastgeleSayiSec() {
+  var randomSayi = Math.floor(Math.random() * 99) + 1;
+  var sayilarDiv = document.getElementById("sayilar");
+  var spanlar = sayilarDiv.getElementsByTagName("span");
+  var secilenSpan = spanlar[randomSayi - 1];
+  secilenSpan.classList.add("red-bold"); 
+}
+
+
+window.onload = function() {
+  document.querySelector('button:nth-of-type(2)').disabled = true; 
+};
+</script>
+
+</body>
+</html>
